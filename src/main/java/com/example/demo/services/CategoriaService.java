@@ -3,12 +3,14 @@ package com.example.demo.services;
 import com.example.demo.domain.Categoria;
 import com.example.demo.dto.AlterCategoriaDto;
 import com.example.demo.dto.CreateCategoriaDto;
+import com.example.demo.dto.GetCategoriaDto;
+import com.example.demo.extras.ObjectMapperUtils;
 import com.example.demo.repositories.CategoriaRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class CategoriaService {
@@ -16,29 +18,28 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
-
-    public List<Categoria> buscarTodos() {
-        return categoriaRepository.findAll();
+    public Set<GetCategoriaDto> buscarTodos() {
+        List<Categoria> categorias = categoriaRepository.findAll();
+        return ObjectMapperUtils.mapAll(categorias, GetCategoriaDto.class);
     }
 
-    public Categoria buscar(Integer id) {
-        return categoriaRepository.findById(id).orElseThrow(() -> new RuntimeException("Não existe nenhum usuário com o Id " + id + " na base de dados."));
+    public GetCategoriaDto buscar(Integer id) {
+        Categoria categoria = categoriaRepository.findById(id).orElseThrow(() -> new RuntimeException("Não existe nenhuma categoria com o Id " + id + " na base de dados."));
+        return ObjectMapperUtils.map(categoria, GetCategoriaDto.class);
     }
 
     public Categoria criar(CreateCategoriaDto categoria) {
-        return categoriaRepository.save(modelMapper.map(categoria, Categoria.class));
+        return categoriaRepository.save(ObjectMapperUtils.map(categoria, Categoria.class));
     }
 
     public Categoria alterar(AlterCategoriaDto categoria) {
         Categoria categoriaDesatualizada = categoriaRepository.findById(categoria.getId())
-                .orElseThrow(() -> new RuntimeException("Não existe nenhum usuário com o Id " + categoria.getId() + " na base de dados."));
+                .orElseThrow(() -> new RuntimeException("Não existe nenhuma categoria com o Id " + categoria.getId() + " na base de dados."));
         categoriaDesatualizada.setDescricao(categoria.getDescricao());
         return categoriaRepository.save(categoriaDesatualizada);
     }
 
-    public void deletar(Integer id){
+    public void deletar(Integer id) {
         categoriaRepository.deleteById(id);
     }
 

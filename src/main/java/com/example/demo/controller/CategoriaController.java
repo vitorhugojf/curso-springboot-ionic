@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
-import java.util.List;
+import java.util.Set;
 
 import com.example.demo.dto.AlterCategoriaDto;
 import com.example.demo.dto.CreateCategoriaDto;
+import com.example.demo.dto.GetCategoriaDto;
+
 import com.example.demo.services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +22,13 @@ public class CategoriaController {
 
     @GetMapping
     public ResponseEntity buscarTodos() {
-        List<Categoria> lista = categoriaService.buscarTodos();
+        Set<GetCategoriaDto> lista = categoriaService.buscarTodos();
         return ResponseEntity.ok(lista);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity buscar(@PathVariable("id") Integer id) {
-        Categoria categoria = categoriaService.buscar(id);
+        GetCategoriaDto categoria = categoriaService.buscar(id);
         return ResponseEntity.ok(categoria);
     }
 
