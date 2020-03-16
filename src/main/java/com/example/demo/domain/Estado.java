@@ -1,5 +1,8 @@
 package com.example.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -16,6 +19,7 @@ public class Estado implements Serializable {
     private String nome;
     private String sigla;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "estado")
     private Set<Cidade> cidades;
 
