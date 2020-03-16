@@ -3,6 +3,7 @@ package com.example.demo.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 public class CategoriaProduto implements Serializable {
@@ -61,5 +62,21 @@ public class CategoriaProduto implements Serializable {
 
     public void setProduto(Produto produto) {
         this.produto = produto;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CategoriaProduto that = (CategoriaProduto) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(createdAt, that.createdAt) &&
+                Objects.equals(categoria, that.categoria) &&
+                Objects.equals(produto, that.produto);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, createdAt, categoria, produto);
     }
 }

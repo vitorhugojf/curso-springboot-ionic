@@ -1,17 +1,11 @@
 package com.example.demo.controller;
 
-import java.util.Set;
-
-import com.example.demo.dto.AlterCategoriaDto;
-import com.example.demo.dto.CreateCategoriaDto;
-import com.example.demo.dto.GetCategoriaDto;
-
+import com.example.demo.dto.categoria.AlterCategoriaDto;
+import com.example.demo.dto.categoria.CreateCategoriaDto;
 import com.example.demo.services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.example.demo.domain.Categoria;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -22,31 +16,26 @@ public class CategoriaController {
 
     @GetMapping
     public ResponseEntity buscarTodos() {
-        Set<GetCategoriaDto> lista = categoriaService.buscarTodos();
-        return ResponseEntity.ok(lista);
+        return ResponseEntity.ok(categoriaService.buscarTodos());
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity buscar(@PathVariable("id") Integer id) {
-        GetCategoriaDto categoria = categoriaService.buscar(id);
-        return ResponseEntity.ok(categoria);
+        return ResponseEntity.ok(categoriaService.buscar(id));
     }
 
     @PostMapping()
     public ResponseEntity criar(@RequestBody CreateCategoriaDto categoria) {
-        Categoria result = categoriaService.criar(categoria);
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(categoriaService.criar(categoria));
     }
 
     @PutMapping
     public ResponseEntity alterar(@RequestBody AlterCategoriaDto categoria) {
-        Categoria result = categoriaService.alterar(categoria);
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(categoriaService.alterar(categoria));
     }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity deletar(@PathVariable("id") Integer id) {
-        categoriaService.deletar(id);
-        return ResponseEntity.ok("Categoria com Id " + id + " deletada com sucesso.");
+        return ResponseEntity.ok(categoriaService.deletar(id));
     }
 }

@@ -1,9 +1,9 @@
 package com.example.demo.services;
 
 import com.example.demo.domain.Categoria;
-import com.example.demo.dto.AlterCategoriaDto;
-import com.example.demo.dto.CreateCategoriaDto;
-import com.example.demo.dto.GetCategoriaDto;
+import com.example.demo.dto.categoria.AlterCategoriaDto;
+import com.example.demo.dto.categoria.CreateCategoriaDto;
+import com.example.demo.dto.categoria.GetCategoriaDto;
 import com.example.demo.extras.ObjectMapperUtils;
 import com.example.demo.extras.ObjectNotFoundException;
 import com.example.demo.repositories.CategoriaRepository;
@@ -40,8 +40,9 @@ public class CategoriaService {
         return categoriaRepository.save(categoriaDesatualizada);
     }
 
-    public void deletar(Integer id) {
+    public String deletar(Integer id) {
         categoriaRepository.deleteById(id);
+        return "Categoria com Id " + id + " deletada com sucesso.";
     }
 
 }
