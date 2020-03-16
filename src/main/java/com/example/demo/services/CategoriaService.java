@@ -5,6 +5,7 @@ import com.example.demo.dto.AlterCategoriaDto;
 import com.example.demo.dto.CreateCategoriaDto;
 import com.example.demo.dto.GetCategoriaDto;
 import com.example.demo.extras.ObjectMapperUtils;
+import com.example.demo.extras.ObjectNotFoundException;
 import com.example.demo.repositories.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class CategoriaService {
     }
 
     public GetCategoriaDto buscar(Integer id) {
-        Categoria categoria = categoriaRepository.findById(id).orElseThrow(() -> new RuntimeException("Não existe nenhuma categoria com o Id " + id + " na base de dados."));
+        Categoria categoria = categoriaRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Não existe nenhuma categoria com o Id " + id + " na base de dados.", Categoria.class.getName()));
         return ObjectMapperUtils.map(categoria, GetCategoriaDto.class);
     }
 
@@ -34,7 +35,7 @@ public class CategoriaService {
 
     public Categoria alterar(AlterCategoriaDto categoria) {
         Categoria categoriaDesatualizada = categoriaRepository.findById(categoria.getId())
-                .orElseThrow(() -> new RuntimeException("Não existe nenhuma categoria com o Id " + categoria.getId() + " na base de dados."));
+                .orElseThrow(() -> new ObjectNotFoundException("Não existe nenhuma categoria com o Id " + categoria.getId() + " na base de dados.", Categoria.class.getName()));
         categoriaDesatualizada.setDescricao(categoria.getDescricao());
         return categoriaRepository.save(categoriaDesatualizada);
     }

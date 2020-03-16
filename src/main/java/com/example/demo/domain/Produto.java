@@ -10,15 +10,13 @@ import java.util.Set;
 public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    Set<CategoriaProduto> categorias;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private Double preco;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "produto_categoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
-    private Set<Categoria> categorias;
 
     public Produto() {
     }
@@ -51,14 +49,6 @@ public class Produto implements Serializable {
 
     public void setPreco(Double preco) {
         this.preco = preco;
-    }
-
-    public Set<Categoria> getCategorias() {
-        return categorias;
-    }
-
-    public void setCategorias(Set<Categoria> categorias) {
-        this.categorias = categorias;
     }
 
     @Override

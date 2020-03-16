@@ -16,8 +16,8 @@ public class Categoria implements Serializable {
     private String nome;
     private String descricao;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "categorias")
-    private Set<Produto> produtos;
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    Set<CategoriaProduto> produtos;
 
     public Categoria() {
     }
@@ -53,11 +53,11 @@ public class Categoria implements Serializable {
         this.descricao = descricao;
     }
 
-    public Set<Produto> getProdutos() {
+    public Set<CategoriaProduto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(Set<Produto> produtos) {
+    public void setProdutos(Set<CategoriaProduto> produtos) {
         this.produtos = produtos;
     }
 
