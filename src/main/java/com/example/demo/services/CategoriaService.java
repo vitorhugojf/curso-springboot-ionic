@@ -25,7 +25,7 @@ public class CategoriaService {
     }
 
     public GetCategoriaDto buscar(Integer id) {
-        Categoria categoria = categoriaRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Não existe nenhuma categoria com o Id " + id + " na base de dados.", Categoria.class.getName()));
+        Categoria categoria = categoriaRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Não existe nenhuma categoria com o Id " + id + " na base de dados."));
         return ObjectMapperUtils.map(categoria, GetCategoriaDto.class);
     }
 
@@ -35,7 +35,7 @@ public class CategoriaService {
 
     public Categoria alterar(AlterCategoriaDto categoria) {
         Categoria categoriaDesatualizada = categoriaRepository.findById(categoria.getId())
-                .orElseThrow(() -> new ObjectNotFoundException("Não existe nenhuma categoria com o Id " + categoria.getId() + " na base de dados.", Categoria.class.getName()));
+                .orElseThrow(() -> new ObjectNotFoundException("Não existe nenhuma categoria com o Id " + categoria.getId() + " na base de dados."));
         categoriaDesatualizada.setDescricao(categoria.getDescricao());
         return categoriaRepository.save(categoriaDesatualizada);
     }
