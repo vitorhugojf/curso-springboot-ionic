@@ -1,11 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.domain.Categoria;
-import com.example.demo.domain.CategoriaProduto;
-import com.example.demo.domain.Produto;
-import com.example.demo.repositories.CategoriaProdutoRepository;
-import com.example.demo.repositories.CategoriaRepository;
-import com.example.demo.repositories.ProdutoRepository;
+import com.example.demo.domain.*;
+import com.example.demo.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,6 +20,12 @@ public class DemoApplication {
 
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private EstadoRepository estadoRepository;
+
+    @Autowired
+    private CidadeRepository cidadeRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
@@ -51,6 +53,22 @@ public class DemoApplication {
         if (categoriaProdutoRepository.findAll().isEmpty()){
             categoriaProdutoRepository.saveAll(Arrays.asList(cp1, cp2, cp3, cp4));
         }
+
+        Estado es1 = new Estado("Minas Gerais", "MG");
+        Estado es2 = new Estado("São Paulo", "SP");
+
+        if (estadoRepository.findAll().isEmpty()){
+            estadoRepository.saveAll(Arrays.asList(es1, es2));
+        }
+
+        Cidade c1 = new Cidade("Uberlandia", es1);
+        Cidade c2 = new Cidade("São Paulo", es2);
+        Cidade c3 = new Cidade("Campinas", es2);
+
+        if (cidadeRepository.findAll().isEmpty()){
+            cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+        }
+
     }
 }
 

@@ -22,8 +22,7 @@ public class Estado implements Serializable {
     public Estado() {
     }
 
-    public Estado(Integer id, String nome, String sigla) {
-        this.id = id;
+    public Estado(String nome, String sigla) {
         this.nome = nome;
         this.sigla = sigla;
         this.cidades = new HashSet<>();
