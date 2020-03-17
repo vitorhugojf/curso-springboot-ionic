@@ -1,5 +1,7 @@
 package com.example.demo.dto.categoria;
 
+import com.example.demo.dto.produto.ProdutoInfosDto;
+
 import java.util.Set;
 
 public class GetCategoriaDto {
@@ -7,12 +9,12 @@ public class GetCategoriaDto {
     private Integer id;
     private String nome;
     private String descricao;
-    private Set<InformacaoProduto> produtos;
+    private Set<ProdutoInfosDto> produtos;
 
     public GetCategoriaDto() {
     }
 
-    public GetCategoriaDto(Integer id, String nome, String descricao, Set<InformacaoProduto> produtos) {
+    public GetCategoriaDto(Integer id, String nome, String descricao, Set<ProdutoInfosDto> produtos) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -43,51 +45,11 @@ public class GetCategoriaDto {
         this.descricao = descricao;
     }
 
-    public Set<InformacaoProduto> getProdutos() {
+    public Set<ProdutoInfosDto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(Set<InformacaoProduto> produtos) {
+    public void setProdutos(Set<ProdutoInfosDto> produtos) {
         this.produtos = produtos;
-    }
-}
-
-class InformacaoProduto {
-
-    private Integer produtoId;
-    private String produtoNome;
-    private Double produtoPreco;
-
-    public InformacaoProduto() {
-    }
-
-    public InformacaoProduto(Integer produtoId, String produtoNome, Double produtoPreco) {
-        this.produtoId = produtoId;
-        this.produtoNome = produtoNome;
-        this.produtoPreco = produtoPreco;
-    }
-
-    public Integer getProdutoId() {
-        return produtoId;
-    }
-
-    public void setProdutoId(Integer produtoId) {
-        this.produtoId = produtoId;
-    }
-
-    public String getProdutoNome() {
-        return produtoNome;
-    }
-
-    public void setProdutoNome(String produtoNome) {
-        this.produtoNome = produtoNome;
-    }
-
-    public Double getProdutoPreco() {
-        return produtoPreco;
-    }
-
-    public void setProdutoPreco(Double produtoPreco) {
-        this.produtoPreco = produtoPreco;
     }
 }
