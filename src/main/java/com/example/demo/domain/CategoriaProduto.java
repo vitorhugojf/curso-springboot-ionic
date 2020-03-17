@@ -31,7 +31,6 @@ public class CategoriaProduto implements Serializable {
         this.createdAt = new Date();
     }
 
-
     public Integer getId() {
         return id;
     }

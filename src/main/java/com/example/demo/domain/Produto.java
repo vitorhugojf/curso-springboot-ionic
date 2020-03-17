@@ -18,6 +18,9 @@ public class Produto implements Serializable {
     private String nome;
     private Double preco;
 
+    @OneToMany(mappedBy = "id.produto")
+    private Set<ItemPedido> itens;
+
     public Produto() {
     }
 
@@ -25,6 +28,15 @@ public class Produto implements Serializable {
         this.nome = nome;
         this.preco = preco;
         this.categorias = new HashSet<>();
+        this.itens = new HashSet<>();
+    }
+
+    public Set<Pedido> getPedidos() {
+        Set<Pedido> lista = new HashSet<>();
+        for (ItemPedido x: itens){
+            lista.add(x.getPedido());
+        }
+        return lista;
     }
 
     public Integer getId() {
@@ -49,6 +61,22 @@ public class Produto implements Serializable {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public Set<CategoriaProduto> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(Set<CategoriaProduto> categorias) {
+        this.categorias = categorias;
+    }
+
+    public Set<ItemPedido> getItens() {
+        return itens;
+    }
+
+    public void setItens(Set<ItemPedido> itens) {
+        this.itens = itens;
     }
 
     @Override
