@@ -8,6 +8,9 @@ import com.example.demo.extras.ObjectMapperUtils;
 import com.example.demo.extras.ObjectNotFoundException;
 import com.example.demo.repositories.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,6 +46,11 @@ public class CategoriaService {
     public String deletar(Integer id) {
         categoriaRepository.deleteById(id);
         return "Categoria com Id " + id + " deletada com sucesso.";
+    }
+
+    public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+        return categoriaRepository.findAll(pageRequest);
     }
 
 }

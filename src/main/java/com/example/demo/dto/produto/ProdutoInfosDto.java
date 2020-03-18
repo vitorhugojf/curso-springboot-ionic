@@ -1,6 +1,10 @@
 package com.example.demo.dto.produto;
 
-public class ProdutoInfosDto {
+import java.io.Serializable;
+
+public class ProdutoInfosDto implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private Integer produtoId;
     private String produtoNome;
     private Double produtoPreco;

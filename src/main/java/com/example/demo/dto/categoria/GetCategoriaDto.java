@@ -2,9 +2,11 @@ package com.example.demo.dto.categoria;
 
 import com.example.demo.dto.produto.ProdutoInfosDto;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class GetCategoriaDto {
+public class GetCategoriaDto implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private Integer id;
     private String nome;

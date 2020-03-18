@@ -52,12 +52,19 @@ public class DemoApplication {
         if (false) {
             Categoria cat1 = new Categoria("Informática", "Produtos de informática em geral");
             Categoria cat2 = new Categoria("Escritório", "Produtos de Escritório em geral");
+            Categoria cat3 = new Categoria("teste 1", "Produtos de Escritório em geral");
+            Categoria cat4 = new Categoria("teste 2", "Produtos de Escritório em geral");
+            Categoria cat5 = new Categoria("teste 3", "Produtos de Escritório em geral");
+            Categoria cat6 = new Categoria("teste 4", "Produtos de Escritório em geral");
+            Categoria cat7 = new Categoria("teste 5", "Produtos de Escritório em geral");
+            Categoria cat8 = new Categoria("teste 6", "Produtos de Escritório em geral");
+            Categoria cat9 = new Categoria("teste 7", "Produtos de Escritório em geral");
 
             Produto p1 = new Produto("Computador", 2000.00);
             Produto p2 = new Produto("Impressora", 800.00);
             Produto p3 = new Produto("Mouse", 80.00);
 
-            categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+            categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8, cat9));
             produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 
             CategoriaProduto cp1 = new CategoriaProduto(cat1, p1);

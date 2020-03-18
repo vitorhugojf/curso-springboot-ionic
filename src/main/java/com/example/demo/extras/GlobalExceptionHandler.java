@@ -14,7 +14,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<StandardError> handleException(Exception e) {
         if (e instanceof ObjectNotFoundException) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new StandardError(e.getMessage()));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new StandardError(e.getMessage()));
         }
         if(e instanceof EmptyResultDataAccessException){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new StandardError(e.getMessage()));

@@ -21,6 +21,12 @@ public class CategoriaController {
         return ResponseEntity.ok(categoriaService.buscarTodos());
     }
 
+    @GetMapping(value = "/page")
+    public ResponseEntity buscarTodosPaginado(@RequestParam(value="page", defaultValue = "0") Integer page,@RequestParam(value="linesPerPage", defaultValue = "24") Integer linesPerPage,
+                                              @RequestParam(value="orderBy", defaultValue = "nome") String orderBy, @RequestParam(value="direction", defaultValue = "ASC") String direction) {
+        return ResponseEntity.ok(categoriaService.findPage(page, linesPerPage, orderBy, direction));
+    }
+
     @GetMapping(value = "/{id}")
     public ResponseEntity buscar(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(categoriaService.buscar(id));
@@ -39,6 +45,6 @@ public class CategoriaController {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity deletar(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(categoriaService.deletar(id));
+        return ResponseEntity.noContent().build();
     }
 }

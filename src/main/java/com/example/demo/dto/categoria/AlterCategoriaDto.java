@@ -1,6 +1,10 @@
 package com.example.demo.dto.categoria;
 
-public class AlterCategoriaDto {
+import java.io.Serializable;
+
+public class AlterCategoriaDto implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private Integer id;
     private String descricao;
 
