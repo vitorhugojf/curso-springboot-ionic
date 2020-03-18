@@ -30,6 +30,7 @@ public class Cliente implements Serializable {
     @CollectionTable(name="telefone")
     private Set<String> telefones;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "cliente")
     private Set<Pedido> pedidos;
 

@@ -1,5 +1,7 @@
 package com.example.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -15,10 +17,12 @@ public class CategoriaProduto implements Serializable {
     private Date createdAt;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "produto_id")
     private Produto produto;
 

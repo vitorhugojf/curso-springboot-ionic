@@ -1,5 +1,7 @@
 package com.example.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -18,6 +20,7 @@ public class Produto implements Serializable {
     private String nome;
     private Double preco;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "id.produto")
     private Set<ItemPedido> itens;
 
@@ -31,6 +34,7 @@ public class Produto implements Serializable {
         this.itens = new HashSet<>();
     }
 
+    @JsonIgnore
     public Set<Pedido> getPedidos() {
         Set<Pedido> lista = new HashSet<>();
         for (ItemPedido x: itens){
