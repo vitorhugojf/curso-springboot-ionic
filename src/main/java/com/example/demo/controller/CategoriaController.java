@@ -1,11 +1,13 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.Categoria;
 import com.example.demo.dto.categoria.AlterCategoriaDto;
 import com.example.demo.dto.categoria.CreateCategoriaDto;
 import com.example.demo.services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -26,7 +28,8 @@ public class CategoriaController {
 
     @PostMapping()
     public ResponseEntity criar(@RequestBody CreateCategoriaDto categoria) {
-        return ResponseEntity.ok(categoriaService.criar(categoria));
+        Categoria novaCategoria = categoriaService.criar(categoria);
+        return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(novaCategoria.getId()).toUri()).build();
     }
 
     @PutMapping
