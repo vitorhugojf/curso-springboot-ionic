@@ -34,7 +34,7 @@ public class CategoriaController {
 
     @PutMapping
     public ResponseEntity alterar(@RequestBody AlterCategoriaDto categoria) {
-        return ResponseEntity.ok(categoriaService.alterar(categoria));
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping(value = "/{id}")
